@@ -32,4 +32,15 @@ out=$(sh hooks/session-start.sh </dev/null); echo "$out" | grep -q 'АКТИВН
 
 echo "garbage" > "$flag"; out=$(prompt "x"); echo "$out" | grep -q '(full)'; check "corrupt flag falls back to full" $?
 
+# Antigravity (agy) hook format
+agy_prompt() { printf '{"hookEventName":"PreInvocation","lastUserInput":"%s"}' "$1" | sh hooks/prompt.sh; }
+agy_start() { printf '{"hookEventName":"SessionStart"}' | sh hooks/session-start.sh; }
+
+agy_prompt "/pechera ultra" >/dev/null; [ "$(cat "$flag")" = ultra ]; check "agy: /pechera ultra sets ultra" $?
+out=$(agy_prompt "далі"); printf '%s\n' "$out" | jq -e '.injectSteps[0].systemMessage.systemMessage | contains("(ultra)")' >/dev/null; check "agy: prompt returns injectSteps JSON" $?
+out=$(agy_start); printf '%s\n' "$out" | jq -e '.injectSteps[0].systemMessage.systemMessage | contains("АКТИВНИЙ РІВЕНЬ: ultra")' >/dev/null; check "agy: session-start returns injectSteps JSON" $?
+agy_prompt "/pechera off" >/dev/null
+[ "$(agy_prompt "x")" = "{}" ]; check "agy: off prompt returns {}" $?
+[ "$(agy_start)" = "{}" ]; check "agy: off session-start returns {}" $?
+
 exit $fail

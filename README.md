@@ -1,6 +1,6 @@
 # pechera
 
-Печерний режим українською для Claude Code: стислі відповіді без води, без суржику.
+Печерний режим українською для Claude Code та Antigravity (`agy`): стислі відповіді без води, без суржику.
 Особиста заміна [ruslanlap/cavemenko](https://github.com/ruslanlap/cavemenko); ідеї прийомів (pro-drop,
 тире, наказовий) звідти.
 
@@ -12,9 +12,16 @@
 
 ## Встановлення
 
+Claude Code:
 ```sh
 claude plugin marketplace add ~/Projects/pechera
 claude plugin install pechera@pechera
+```
+
+Antigravity (`agy`):
+```sh
+ln -sfn ~/Projects/pechera ~/.gemini/config/plugins/pechera
+agy plugin enable pechera
 ```
 
 ## Рівні

@@ -1,0 +1,18 @@
+{
+  "pechera": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "sh ./hooks/session-start.sh",
+        "timeout": 5
+      }
+    ],
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "sh ./hooks/prompt.sh",
+        "timeout": 5
+      }
+    ]
+  }
+}
