@@ -1,6 +1,6 @@
 {
   "name": "pechera",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Печерний режим українською: стислі відповіді без води й без суржику.",
   "author": { "name": "Vlad" },
   "repository": "https://github.com/svicervlad/pechera",
