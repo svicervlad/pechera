@@ -1,13 +1,13 @@
 {
   "name": "pechera",
   "owner": { "name": "Vlad" },
-  "metadata": { "description": "Печерний режим українською", "version": "0.1.1" },
+  "metadata": { "description": "Печерний режим українською", "version": "0.1.2" },
   "plugins": [
     {
       "name": "pechera",
       "source": "./",
       "description": "Печерний режим українською: стислі відповіді без води й без суржику.",
-      "version": "0.1.1"
+      "version": "0.1.2"
     }
   ]
 }
