@@ -1,0 +1,24 @@
+{
+  "name": "pechera",
+  "version": "0.1.0",
+  "description": "Печерний режим українською: стислі відповіді без води й без суржику.",
+  "author": { "name": "Vlad" },
+  "repository": "https://github.com/svicervlad/pechera",
+  "license": "MIT",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh\"", "timeout": 5 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/prompt.sh\"", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}
