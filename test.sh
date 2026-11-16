@@ -38,6 +38,10 @@ agy_start() { printf '{"hookEventName":"SessionStart"}' | sh hooks/session-start
 
 agy_prompt "/pechera ultra" >/dev/null; [ "$(cat "$flag")" = ultra ]; check "agy: /pechera ultra sets ultra" $?
 out=$(agy_prompt "далі"); printf '%s\n' "$out" | jq -e '.injectSteps[0].systemMessage.systemMessage | contains("(ultra)")' >/dev/null; check "agy: prompt returns injectSteps JSON" $?
+out=$(printf '{"hookEventName":"PreInvocation","invocationNum":1,"lastUserInput":"далі"}' | sh hooks/prompt.sh)
+printf '%s\n' "$out" | jq -e '.injectSteps[0].systemMessage.systemMessage | contains("(ultra)")' >/dev/null; check "agy: invocationNum 1 injects reminder" $?
+out=$(printf '{"hookEventName":"PreInvocation","invocationNum":2,"lastUserInput":"далі"}' | sh hooks/prompt.sh)
+[ "$out" = "{}" ]; check "agy: invocationNum 2 skips duplicate reminder" $?
 out=$(agy_start); printf '%s\n' "$out" | jq -e '.injectSteps[0].systemMessage.systemMessage | contains("АКТИВНИЙ РІВЕНЬ: ultra")' >/dev/null; check "agy: session-start returns injectSteps JSON" $?
 agy_prompt "/pechera off" >/dev/null
 [ "$(agy_prompt "x")" = "{}" ]; check "agy: off prompt returns {}" $?
