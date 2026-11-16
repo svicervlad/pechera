@@ -14,15 +14,17 @@
 
 Claude Code:
 ```sh
-claude plugin marketplace add ~/Projects/pechera
+claude plugin marketplace add svicervlad/pechera
 claude plugin install pechera@pechera
 ```
 
 Antigravity (`agy`):
 ```sh
-ln -sfn ~/Projects/pechera ~/.gemini/config/plugins/pechera
+git clone https://github.com/svicervlad/pechera.git ~/.gemini/config/plugins/pechera
 agy plugin enable pechera
 ```
+
+Для локальної розробки заміни `svicervlad/pechera` на `~/Projects/pechera` (або зроби симлінк у `~/.gemini/config/plugins/pechera`).
 
 ## Рівні
 
